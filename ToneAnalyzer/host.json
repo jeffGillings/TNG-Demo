@@ -1,0 +1,21 @@
+{
+  "aggregator": {
+    "batchSize": 1000,
+    "flushTimeout": "00:05:00"
+  },
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": false,
+        "maxTelemetryItemsPerSecond": 20
+      }
+    },
+    "logLevel": {
+      "default": "Information",
+      "Function": "Information",
+      "Host": "Information",
+      "Host.Aggregator": "Trace"
+    }
+  },
+  "version": "2.0"
+}
