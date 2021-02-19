@@ -1,4 +1,4 @@
-﻿namespace WebAPITests
+﻿namespace Shared.TestSupport
 {
     using AutoFixture;
     using Moq;

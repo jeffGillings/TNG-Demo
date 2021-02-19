@@ -360,3 +360,15 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+[Ll]ogs/
+*.rsa
+local.settings.json
+local/
+*.secrets.json
+tools/
+healthchecksdb
+.DS_Store
+
+# Don't include env files with potentially sensitive information within
+.env

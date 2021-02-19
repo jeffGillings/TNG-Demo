@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -13,6 +13,10 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging.ServiceBus\Messaging.ServiceBus.csproj" />
   </ItemGroup>
 
   <ItemGroup>

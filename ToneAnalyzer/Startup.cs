@@ -5,8 +5,10 @@ using ToneAnalyzerFunction;
 namespace ToneAnalyzerFunction
 {
     using System;
+    using Messaging.ServiceBus;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using ToneAnalyzerFunction.DependencyInjection;
     using ToneAnalyzerFunction.Options;
     using ToneAnalyzerFunction.Services;
 
@@ -18,13 +20,15 @@ namespace ToneAnalyzerFunction
 
             var configuration = new ConfigurationBuilder().BuildCustomisedConfiguration();
 
-            builder.Services.Configure<ToneAnalyzerOptions>(configuration.GetSection(ToneAnalyzerOptions.ToneAnalyzer));
             builder.Services.Configure<CommentClientOptions>(configuration.GetSection(CommentClientOptions.CommentClient));
 
+            builder.Services.AddToneAnalyzerServices(configuration);
             builder.Services.AddScoped<IToneAnalyzer, ToneAnalyzer>();
-            builder.Services.AddScoped<ICommentClient, CommentClient>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IToneAnalyzer, ToneAnalyzer>();
+            
+            builder.Services.AddHttpClient<ICommentClient, CommentClient>();
+            builder.Services.AddQueueHandler(configuration.Bind<ServiceBusQueueSettings<SetCommentToneMessage>>("CommentToneQueue"));
         }
     }
 }

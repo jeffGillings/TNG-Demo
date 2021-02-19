@@ -1,7 +1,9 @@
 ﻿namespace WebAPITests
 {
     using System.Threading.Tasks;
+    using Messaging.ServiceBus;
     using Moq;
+    using Shared.TestSupport;
     using WebAPI.Data.Domain;
     using WebAPI.DTO;
     using WebAPI.Services;
@@ -45,6 +47,7 @@
             // Assert 
             Assert.True(result.Successful);
             Assert.True(result.Result > 0);
+            GetMock<IQueueClient<SetCommentToneMessage>>().Verify(x => x.SendAsync(Any<SetCommentToneMessage>()), Times.Once);
         }
 
         [Fact]

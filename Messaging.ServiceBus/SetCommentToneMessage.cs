@@ -1,4 +1,4 @@
-﻿namespace ToneAnalyzerFunction
+﻿namespace Messaging.ServiceBus
 {
     public class SetCommentToneMessage
     {

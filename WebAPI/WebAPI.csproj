@@ -13,5 +13,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging.ServiceBus\Messaging.ServiceBus.csproj" />
+  </ItemGroup>
 
 </Project>

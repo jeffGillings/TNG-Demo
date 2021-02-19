@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -18,12 +18,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Messaging.ServiceBus\Messaging.ServiceBus.csproj" />
     <ProjectReference Include="..\Shared.TestSupport\Shared.TestSupport.csproj" />
-    <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
+    <ProjectReference Include="..\ToneAnalyzer\ToneAnalyzerFunction.csproj" />
   </ItemGroup>
 
 </Project>

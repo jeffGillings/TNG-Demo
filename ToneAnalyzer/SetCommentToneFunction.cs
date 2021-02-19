@@ -4,6 +4,7 @@
     using System.Text;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using Messaging.ServiceBus;
     using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Extensions.Logging;

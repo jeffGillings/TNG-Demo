@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Shared.TestSupport;
     using WebAPI.Data;
     using WebAPI.Data.Domain;
     using WebAPI.Services;

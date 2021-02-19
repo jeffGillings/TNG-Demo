@@ -1,5 +1,6 @@
 namespace WebAPI
 {
+    using global::Messaging.ServiceBus;
     using Hellang.Middleware.ProblemDetails;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,7 @@ namespace WebAPI
             services.AddControllers();
 
             services.AddProblemDetails();
+            services.AddQueueHandler(Configuration.Bind<ServiceBusQueueSettings<SetCommentToneMessage>>("CommentToneQueue"));
 
             services.AddDbContext<ApplicationDbContext>(op => op.UseInMemoryDatabase("CustomerEngagement"));
 

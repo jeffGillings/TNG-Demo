@@ -1,6 +1,7 @@
 ﻿namespace WebAPI.Services
 {
     using System.Threading.Tasks;
+    using global::Messaging.ServiceBus;
     using WebAPI.DTO;
     using static Microsoft.AspNetCore.Http.StatusCodes;
     using static WebAPI.Constants.ErrorMessages;
@@ -8,10 +9,12 @@
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _repository;
+        private readonly IQueueClient<SetCommentToneMessage> _queueClient;
 
-        public CommentService(ICommentRepository repository)
+        public CommentService(ICommentRepository repository, IQueueClient<SetCommentToneMessage> queueClient)
         {
             _repository = repository;
+            _queueClient = queueClient;
         }
 
         public async Task<Outcome<int>> AddCommentAsync(CommentAddRequest request)
@@ -28,6 +31,7 @@
 
             // Publish message to ServiceBus to trigger  function to
             // get comment tone 
+            await _queueClient.SendAsync( CreateCommentMessage(request) );
 
             return Outcome.Success(comment.Id);
         }
@@ -55,6 +59,15 @@
             await _repository.SaveAsync();
 
             return Outcome.Success( CommentMappingHelper.MapToCommentResponse(comment) );
+        }
+
+        private SetCommentToneMessage CreateCommentMessage(CommentAddRequest request)
+        {
+            return new SetCommentToneMessage
+            {
+                Id = request.Id,
+                Comment = request.comment
+            };
         }
     }
 }
